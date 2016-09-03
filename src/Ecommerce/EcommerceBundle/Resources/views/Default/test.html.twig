@@ -1,0 +1,14 @@
+{#{dump(Produits)}#}
+{% for Produit in Produits %}
+<section>
+    <ul>
+        <li>{{Produit.name}}</li>
+        <li>{{Produit.description}}</li>
+        <li>{{Produit.categorie}}</li>
+        <li>{{Produit.image}}</li>
+        <li>{{Produit.prixht}}</li>
+        <li>{{Produit.tva}}</li>
+        <li>{{Produit.disponible}}</li>
+    </ul>
+</section>
+{%endfor%}

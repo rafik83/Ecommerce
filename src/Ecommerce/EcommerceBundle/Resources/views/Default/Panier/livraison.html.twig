@@ -1,0 +1,83 @@
+{% include "::layout/layout.html.twig"%}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h2>Livraison</h2>
+            <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="span4">
+                        {% if utilisateur.adresses|length !=0 %}
+                            <form action="{{path('validation')}}" method="POST">
+                            <h4>Adresse de livraison</h4>
+                            {% for adresse in utilisateur.adresses %}
+                            <label class="radio">
+                                <input type="radio" name="livraison" id="optionsRadios1" value="{{adresse.id}}" {% if loop.index0 == 0 %} checked="cheked" {% endif%}>
+                                {{adresse.adress}}, {{adresse.cp}} {{adresse.ville}} <a href="{{path('livraisonadresseSuppression',{'id': adresse.id})}}"><i class="icon-trash"></i></a> <br /><!-- ici c 1 er adresse du user courant  -->
+                                {{adresse.nom}} {{adresse.prenom}}
+                            </label>
+                            <br />
+                            {% endfor%}
+                            
+                            <h4>Adresse de facturation</h4>
+                            {% for adresse in utilisateur.adresses %}
+                            <label class="radio">
+                                <input type="radio" name="facturation" id="optionsRadios1" value="{{adresse.id}}" {% if loop.index0 == 0 %} checked="cheked" {% endif%}>
+                                {{adresse.adress}}, {{adresse.cp}} {{adresse.ville}} <a href="{{path('livraisonadresseSuppression',{'id': adresse.id})}}"><i class="icon-trash"></i></a> <br /><!-- ici c 1 er adresse du user courant  -->
+                                {{adresse.nom}} {{adresse.prenom}}
+                            </label>
+                            <br />
+                            {% endfor%}
+                            <button class="btn btn-primary">Valider mes adresses</button>
+                        </form>
+                            {% endif%}
+                    </div>
+
+
+                    <div class="span4 offset2">
+                        <h4>Ajouter une nouvelle adresse</h4>
+                        <form action="{{path('livraison')}}" method="POST">
+                            {{form_widget(form)}}
+                                <!--label>Nom</label>
+                                <input type="text">
+    
+                                <label>Prénom</label>
+                                <input type="text">
+    
+                                <label>Adresse</label>
+                                <input type="text">
+    
+                                <label>Ville</label>
+                                <input type="text">
+    
+                                <label>Code postal</label>
+                                <input type="text">
+    
+                                <label>Ville</label>
+                                <input type="text">
+    
+                                <label>Téléphone</label>
+                                <input type="text"-->                                        
+
+                                <br />
+                                <button id="btn" class="btn btn-primary" type="submit">Ajouter</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endblock  %}
+  {% include "::layout/footer.html.twig" %}
+
+  {%block javascript %}   
+
+<script>
+$(document).ready(function() {
+    //alert($('#ecommerce_ecommercebundle_utilisateursadress_cp').val());
+});
+</script>     
+   {% endblock  %}     
